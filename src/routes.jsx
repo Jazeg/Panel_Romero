@@ -1,3 +1,4 @@
+// src/routes.jsx
 import {
   HomeIcon,
   UserCircleIcon,
@@ -5,8 +6,11 @@ import {
   InformationCircleIcon,
   ServerStackIcon,
   RectangleStackIcon,
+  ReceiptPercentIcon,
+  CubeIcon,
+  UserGroupIcon,
 } from "@heroicons/react/24/solid";
-import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
+import { Home, Profile, Tables, Notifications, Facturacion, Productos, Clientes, NuevaVenta } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
 
 const icon = {
@@ -19,43 +23,65 @@ export const routes = [
     pages: [
       {
         icon: <HomeIcon {...icon} />,
-        name: "dashboard",
+        name: "panel de control",
         path: "/home",
         element: <Home />,
       },
       {
+        icon: <ReceiptPercentIcon {...icon} />,
+        name: "facturación",
+        path: "/facturacion",
+        element: <Facturacion />,
+      },
+      {
+        path: "/nueva-venta",
+        element: <NuevaVenta />,
+      },
+      {
+        icon: <CubeIcon {...icon} />,
+        name: "productos/servicios",
+        path: "/productos",
+        element: <Productos />,
+      },
+      {
+        icon: <UserGroupIcon {...icon} />,
+        name: "clientes",
+        path: "/clientes",
+        element: <Clientes />,
+      },
+      {
         icon: <UserCircleIcon {...icon} />,
-        name: "profile",
+        name: "perfil",
         path: "/profile",
         element: <Profile />,
       },
       {
         icon: <TableCellsIcon {...icon} />,
-        name: "tables",
+        name: "tablas",
         path: "/tables",
         element: <Tables />,
       },
       {
         icon: <InformationCircleIcon {...icon} />,
-        name: "notifications",
+        name: "notificaciones",
         path: "/notifications",
         element: <Notifications />,
       },
     ],
   },
   {
-    title: "auth pages",
+    title: "páginas de autenticación",
     layout: "auth",
     pages: [
       {
         icon: <ServerStackIcon {...icon} />,
-        name: "sign in",
+        name: "iniciar sesión",
         path: "/sign-in",
         element: <SignIn />,
       },
       {
         icon: <RectangleStackIcon {...icon} />,
-        name: "sign up",
+        name: "registrarse",
         path: "/sign-up",
         element: <SignUp />,
       },

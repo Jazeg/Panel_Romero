@@ -46,9 +46,10 @@ export function Configurator() {
     controller;
   const [stars, setStars] = React.useState(0);
 
+  // Actualizamos los colores para que sean válidos
   const sidenavColors = {
     white: "from-gray-100 to-gray-100 border-gray-200",
-    dark: "from-black to-black border-gray-200",
+    "blue-gray": "from-blue-gray-600 to-blue-gray-800 border-blue-gray-200",
     green: "from-green-400 to-green-600",
     orange: "from-orange-400 to-orange-600",
     red: "from-red-400 to-red-600",
@@ -72,10 +73,10 @@ export function Configurator() {
       <div className="flex items-start justify-between px-6 pt-8 pb-6">
         <div>
           <Typography variant="h5" color="blue-gray">
-            Dashboard Configurator
+            Configuración del Panel
           </Typography>
           <Typography className="font-normal text-blue-gray-600">
-            See our dashboard options.
+            Personaliza la apariencia del panel.
           </Typography>
         </div>
         <IconButton
@@ -89,7 +90,7 @@ export function Configurator() {
       <div className="py-4 px-6">
         <div className="mb-12">
           <Typography variant="h6" color="blue-gray">
-            Sidenav Colors
+            Colores de la Barra Lateral
           </Typography>
           <div className="mt-3 flex items-center gap-2">
             {Object.keys(sidenavColors).map((color) => (
@@ -107,29 +108,29 @@ export function Configurator() {
         </div>
         <div className="mb-12">
           <Typography variant="h6" color="blue-gray">
-            Sidenav Types
+            Tipos de Barra Lateral
           </Typography>
           <Typography variant="small" color="gray">
-            Choose between 3 different sidenav types.
+            Elige entre 3 tipos de barra lateral diferentes.
           </Typography>
           <div className="mt-3 flex items-center gap-2">
             <Button
               variant={sidenavType === "dark" ? "gradient" : "outlined"}
               onClick={() => setSidenavType(dispatch, "dark")}
             >
-              Dark
+              Oscuro
             </Button>
             <Button
               variant={sidenavType === "transparent" ? "gradient" : "outlined"}
               onClick={() => setSidenavType(dispatch, "transparent")}
             >
-              Transparent
+              Transparente
             </Button>
             <Button
               variant={sidenavType === "white" ? "gradient" : "outlined"}
               onClick={() => setSidenavType(dispatch, "white")}
             >
-              White
+              Claro
             </Button>
           </div>
         </div>
@@ -137,7 +138,7 @@ export function Configurator() {
           <hr />
           <div className="flex items-center justify-between py-5">
             <Typography variant="h6" color="blue-gray">
-              Navbar Fixed
+              Barra de Navegación Fija
             </Typography>
             <Switch
               id="navbar-fixed"
@@ -149,23 +150,23 @@ export function Configurator() {
           <div className="my-8 flex flex-col gap-4">
             <a
               href="https://www.creative-tim.com/product/material-tailwind-dashboard-react?rel=mtdr"
-              target="_black"
+              target="_blank"
             >
               <Button variant="gradient" fullWidth>
-                Free Download
+                Descargar Gratis
               </Button>
             </a>
             <a
               href="https://www.material-tailwind.com/docs/react/installation?rel=mtdr"
-              target="_black"
+              target="_blank"
             >
               <Button variant="outlined" color="blue-gray" fullWidth>
-                View Documentation
+                Ver Documentación
               </Button>
             </a>
             <a
               href="https://www.material-tailwind.com/blocks/react?rel=mtdr"
-              target="_black"
+              target="_blank"
             >
               <Button variant="outlined" color="blue-gray" fullWidth>
                 Material Tailwind PRO
@@ -208,7 +209,7 @@ export function Configurator() {
         </div>
         <div className="text-center">
           <Typography variant="h6" color="blue-gray">
-            Thank you for sharing ❤️
+            ¡Gracias por compartir ❤️!
           </Typography>
           <div className="mt-4 flex justify-center gap-2">
             <Button
@@ -223,7 +224,7 @@ export function Configurator() {
               className="flex items-center gap-2"
             >
               <i className="fa-brands fa-facebook text-white" />
-              Share
+              Compartir
             </Button>
           </div>
         </div>
