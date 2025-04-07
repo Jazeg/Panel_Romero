@@ -18,7 +18,7 @@ export function Dashboard() {
         brandImg={
           sidenavType === "dark" ? "/img/logo-ct.png" : "/img/logo-ct-dark.png"
         }
-        brandName="Panel Administrativo Transporte Romero"
+        brandName="Panel Administrativo Transportes Romero"
       />
       <div className="p-4 xl:ml-80">
         <DashboardNavbar />
