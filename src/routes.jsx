@@ -19,9 +19,7 @@ import {
 
 import { 
   Home,
-  Profile, 
-  Tables, 
-  Notifications, 
+
   Facturacion, 
   Productos, 
   Clientes, 
@@ -36,7 +34,7 @@ import {
   GestionUsuarios
 } from "@/pages/dashboard";
 
-import { SignIn, SignUp } from "@/pages/auth";
+
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -114,44 +112,17 @@ export const routes = [
         path: "/configuracion",
         element: <ConfiguracionSistema />,
       },
-      {
-        icon: <UserCircleIcon {...icon} />,
-        name: "perfil",
-        path: "/profile",
-        element: <Profile />,
-      },
-      {
-        icon: <TableCellsIcon {...icon} />,
-        name: "tablas",
-        path: "/tables",
-        element: <Tables />,
-      },
+
+
       {
         icon: <InformationCircleIcon {...icon} />,
-        name: "notificaciones",
-        path: "/notifications",
-        element: <Notifications />,
+
+
+
       },
     ],
   },
-  {
-    title: "páginas de autenticación",
-    layout: "auth",
-    pages: [
-      {
-        icon: <ServerStackIcon {...icon} />,
-        name: "iniciar sesión",
-        path: "/sign-in",
-        element: <SignIn />,
-      },
-      {
-        icon: <RectangleStackIcon {...icon} />,
-        name: "registrarse",
-        path: "/sign-up",
-        element: <SignUp />,
-      },
-    ],
-  },
+
 ];
 
 export default routes;

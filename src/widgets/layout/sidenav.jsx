@@ -46,7 +46,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
       </div>
       {/* Añadimos overflow-y-auto para permitir scroll */}
       <div className="m-4 overflow-y-auto flex-1">
-        {routes.map(({ layout, title, pages }, key) => (
+        {routes.filter(route => route.title !== 'páginas de autenticación').map(({ layout, title, pages }, key) => (
           <ul key={key} className="mb-4 flex flex-col gap-1">
             {title && (
               <li key={`title-${key}`} className="mx-3.5 mt-4 mb-2">

@@ -565,7 +565,7 @@ function FormularioNuevaVenta() {
             </CardHeader>
             <CardBody className="p-6">
               {/* Datos del cliente */}
-              <div className="mt-6">
+              <div className="mt-2">
                 <Typography variant="small" className="font-medium mb-2">
                   Cliente
                 </Typography>
@@ -576,11 +576,10 @@ function FormularioNuevaVenta() {
   value={facturaData.client_doc_type}
   onChange={(val) => handleTipoDocumentoClienteChange(val)}
 >
-  {/* Always render all options to avoid children warning */}
+  {/* Always render at least one Option to avoid "null props" error */}
   {facturaData.document_type_code === '01' ? (
     <Option value="6">{tipoDocumentoCliente['6']} - RUC</Option>
-  ) : null}
-  {facturaData.document_type_code !== '01' && (
+  ) : (
     <>
       <Option value="1">{tipoDocumentoCliente['1']} - DNI</Option>
       <Option value="4">{tipoDocumentoCliente['4']}</Option>
@@ -880,8 +879,8 @@ function FormularioNuevaVenta() {
                   </Typography>
                   <Select 
   label="Forma de Pago"
-  value={facturaData.payment_method || ''}
-  onChange={(val) => setFacturaData({ ...facturaData, payment_method: val })}
+  value={facturaData.payment_terms || ''}
+  onChange={(val) => setFacturaData({ ...facturaData, payment_terms: val })}
 >
   {formaPago.map((fp) => (
     <Option key={fp.value} value={fp.value}>{fp.label}</Option>

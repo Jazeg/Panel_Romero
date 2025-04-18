@@ -86,9 +86,7 @@ Navbar.defaultProps = {
   brandName: "Transportes Romero",
   action: (
     <a href="#" target="_blank">
-      <Button variant="gradient" size="sm" fullWidth>
-        Iniciar Sesión
-      </Button>
+
     </a>
   ),
 };

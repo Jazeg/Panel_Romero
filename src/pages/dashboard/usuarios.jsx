@@ -454,27 +454,31 @@ export function GestionUsuarios() {
             <table className="w-full min-w-[640px] table-auto">
               <thead>
                 <tr>
-                  {["Usuario", "Email", "Rol", "Estado", "Último Acceso", "Acciones"].map(
-                    (el) => (
-                      <th
-                        key={el}
-                        className="border-b border-blue-gray-50 py-3 px-6 text-left"
+                  {[
+                    "Usuario",
+                    "Email",
+                    "Rol",
+                    "Estado",
+                    "Último Acceso",
+                    "Acciones",
+                  ].map((el) => (
+                    <th
+                      key={el}
+                      className="border-b border-blue-gray-50 py-3 px-6 text-left"
+                    >
+                      <Typography
+                        variant="small"
+                        className="text-[11px] font-medium uppercase text-blue-gray-400"
                       >
-                        <Typography
-                          variant="small"
-                          className="text-[11px] font-medium uppercase text-blue-gray-400"
-                        >
-                          {el}
-                        </Typography>
-                      </th>
-                    )
-                  )}
+                        {el}
+                      </Typography>
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
                 {filteredUsuarios.map((usuario) => {
                   const className = "py-3 px-5 border-b border-blue-gray-50";
-                  
                   return (
                     <tr key={usuario.id}>
                       <td className={className}>
@@ -482,11 +486,12 @@ export function GestionUsuarios() {
                           <Avatar
                             size="sm"
                             variant="circular"
-                            className={`bg-${getRoleColor(usuario.role_id)}-500`}
+                            className={`bg-${getRoleColor(usuario.role_id)}-500 flex items-center justify-center`}
                             alt={usuario.full_name}
-                          >
+                          />
+                          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-gray-100 text-xs font-bold">
                             {getInitials(usuario.full_name)}
-                          </Avatar>
+                          </div>
                           <div>
                             <Typography
                               variant="small"
@@ -627,109 +632,98 @@ export function GestionUsuarios() {
         </CardFooter>
       </Card>
       
-      {/* Modal para crear/editar/ver usuario */}
-      <Dialog open={openModal} handler={() => setOpenModal(false)} size="sm">
+      {/* Modal Dialog */}
+      <Dialog size="md" open={openModal} handler={() => setOpenModal(false)}>
         <DialogHeader className="flex items-center justify-between">
-          <Typography variant="h6">
-            {modalMode === "create" ? "Nuevo Usuario" : 
+          <Typography variant="h5" color="blue-gray">
+            {modalMode === "create" ? "Crear Nuevo Usuario" : 
              modalMode === "edit" ? "Editar Usuario" : 
-             modalMode === "password" ? "Cambiar Contraseña" : "Detalles del Usuario"}
+             modalMode === "password" ? "Cambiar Contraseña" : 
+             "Detalles del Usuario"}
           </Typography>
           <IconButton
             variant="text"
             color="blue-gray"
             onClick={() => setOpenModal(false)}
           >
-            <XMarkIcon strokeWidth={2} className="h-5 w-5" />
+            <XMarkIcon className="h-5 w-5" />
           </IconButton>
         </DialogHeader>
-        <DialogBody divider className="overflow-y-auto">
+        
+        <DialogBody className="overflow-y-auto">
           {modalMode === "view" && selectedUsuario && (
-            <div className="flex flex-col gap-4">
-              <div className="flex justify-center">
-                <Avatar
-                  size="xxl"
-                  variant="circular"
-                  className={`bg-${getRoleColor(selectedUsuario.role_id)}-500 h-24 w-24`}
-                  alt={selectedUsuario.full_name}
-                >
-                  {getInitials(selectedUsuario.full_name)}
-                </Avatar>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <Typography variant="small" className="font-medium text-blue-gray-700">
+                  Nombre Completo
+                </Typography>
+                <Typography variant="small" className="font-normal">
+                  {selectedUsuario.full_name}
+                </Typography>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                <div>
-                  <Typography variant="small" className="font-medium text-blue-gray-700">
-                    Nombre Completo
-                  </Typography>
-                  <Typography variant="small" className="font-normal">
-                    {selectedUsuario.full_name}
-                  </Typography>
+              <div>
+                <Typography variant="small" className="font-medium text-blue-gray-700">
+                  Email
+                </Typography>
+                <Typography variant="small" className="font-normal">
+                  {selectedUsuario.email}
+                </Typography>
+              </div>
+              
+              <div>
+                <Typography variant="small" className="font-medium text-blue-gray-700">
+                  Rol
+                </Typography>
+                <div className="mt-1">
+                  <Chip
+                    size="sm"
+                    variant="ghost"
+                    value={getRoleName(selectedUsuario.role_id)}
+                    color={getRoleColor(selectedUsuario.role_id)}
+                  />
                 </div>
-                
-                <div>
-                  <Typography variant="small" className="font-medium text-blue-gray-700">
-                    Email
-                  </Typography>
-                  <Typography variant="small" className="font-normal">
-                    {selectedUsuario.email}
-                  </Typography>
+              </div>
+              
+              <div>
+                <Typography variant="small" className="font-medium text-blue-gray-700">
+                  Estado
+                </Typography>
+                <div className="mt-1">
+                  <Chip
+                    size="sm"
+                    variant="gradient"
+                    value={selectedUsuario.is_active ? "Activo" : "Inactivo"}
+                    color={selectedUsuario.is_active ? "green" : "blue-gray"}
+                  />
                 </div>
-                
-                <div>
-                  <Typography variant="small" className="font-medium text-blue-gray-700">
-                    Rol
-                  </Typography>
-                  <div className="mt-1">
-                    <Chip
-                      size="sm"
-                      variant="ghost"
-                      value={getRoleName(selectedUsuario.role_id)}
-                      color={getRoleColor(selectedUsuario.role_id)}
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <Typography variant="small" className="font-medium text-blue-gray-700">
-                    Estado
-                  </Typography>
-                  <div className="mt-1">
-                    <Chip
-                      size="sm"
-                      variant="gradient"
-                      value={selectedUsuario.is_active ? "Activo" : "Inactivo"}
-                      color={selectedUsuario.is_active ? "green" : "blue-gray"}
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <Typography variant="small" className="font-medium text-blue-gray-700">
-                    Fecha de Creación
-                  </Typography>
-                  <Typography variant="small" className="font-normal">
-                    {formatDate(selectedUsuario.created_at)}
-                  </Typography>
-                </div>
-                
-                <div>
-                  <Typography variant="small" className="font-medium text-blue-gray-700">
-                    Última Actualización
-                  </Typography>
-                  <Typography variant="small" className="font-normal">
-                    {formatDate(selectedUsuario.updated_at)}
-                  </Typography>
-                </div>
-                
-                <div>
-                  <Typography variant="small" className="font-medium text-blue-gray-700">
-                    Último Acceso
-                  </Typography>
-                  <Typography variant="small" className="font-normal">
-                    {selectedUsuario.last_login ? formatDate(selectedUsuario.last_login) : "Nunca ha iniciado sesión"}
-                  </Typography>
-                </div>
+              </div>
+              
+              <div>
+                <Typography variant="small" className="font-medium text-blue-gray-700">
+                  Fecha de Creación
+                </Typography>
+                <Typography variant="small" className="font-normal">
+                  {formatDate(selectedUsuario.created_at)}
+                </Typography>
+              </div>
+              
+              <div>
+                <Typography variant="small" className="font-medium text-blue-gray-700">
+                  Última Actualización
+                </Typography>
+                <Typography variant="small" className="font-normal">
+                  {formatDate(selectedUsuario.updated_at)}
+                </Typography>
+              </div>
+              
+              <div>
+                <Typography variant="small" className="font-medium text-blue-gray-700">
+                  Último Acceso
+                </Typography>
+                <Typography variant="small" className="font-normal">
+                  {selectedUsuario.last_login ? formatDate(selectedUsuario.last_login) : "Nunca ha iniciado sesión"}
+                </Typography>
               </div>
             </div>
           )}
