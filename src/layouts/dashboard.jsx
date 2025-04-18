@@ -9,7 +9,7 @@ import { useMaterialTailwindController } from "@/context";
 
 export function Dashboard() {
   const [controller] = useMaterialTailwindController();
-  const { sidenavType } = controller;
+  const { sidenavType, openSidenav } = controller;
 
   return (
     <div className="min-h-screen bg-blue-gray-50/50">
@@ -20,7 +20,7 @@ export function Dashboard() {
         }
         brandName="Panel Administrativo Transportes Romero"
       />
-      <div className="p-4 xl:ml-80">
+      <div className={`p-4 transition-all duration-300 ${openSidenav ? "ml-80" : "ml-4"}`}>
         <DashboardNavbar />
         <Routes>
           {routes.map(

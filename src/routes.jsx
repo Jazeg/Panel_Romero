@@ -9,8 +9,33 @@ import {
   ReceiptPercentIcon,
   CubeIcon,
   UserGroupIcon,
+  DocumentTextIcon, 
+  ArchiveBoxXMarkIcon,
+  DocumentChartBarIcon,
+  BanknotesIcon,
+  CogIcon,
+  UsersIcon
 } from "@heroicons/react/24/solid";
-import { Home, Profile, Tables, Notifications, Facturacion, Productos, Clientes, NuevaVenta } from "@/pages/dashboard";
+
+import { 
+  Home,
+  Profile, 
+  Tables, 
+  Notifications, 
+  Facturacion, 
+  Productos, 
+  Clientes, 
+  NuevaVenta,
+  NotaCredito,
+  NotaDebito,
+  ComunicacionBaja,
+  DetalleComprobante,
+  GestionPagos,
+  ReporteVentas,
+  ConfiguracionSistema,
+  GestionUsuarios
+} from "@/pages/dashboard";
+
 import { SignIn, SignUp } from "@/pages/auth";
 
 const icon = {
@@ -28,14 +53,42 @@ export const routes = [
         element: <Home />,
       },
       {
-        icon: <ReceiptPercentIcon {...icon} />,
-        name: "facturación",
-        path: "/facturacion",
+        icon: <DocumentTextIcon {...icon} />,
+        name: "comprobantes",
+        path: "/comprobantes",
         element: <Facturacion />,
       },
       {
         path: "/nueva-venta",
         element: <NuevaVenta />,
+      },
+      {
+        path: "/nota-credito",
+        element: <NotaCredito />,
+      },
+      {
+        path: "/nota-debito",
+        element: <NotaDebito />,
+      },
+      {
+        path: "/comunicacion-baja",
+        element: <ComunicacionBaja />,
+      },
+      {
+        path: "/comprobante/:id",
+        element: <DetalleComprobante />,
+      },
+      {
+        icon: <BanknotesIcon {...icon} />,
+        name: "pagos",
+        path: "/pagos",
+        element: <GestionPagos />,
+      },
+      {
+        icon: <DocumentChartBarIcon {...icon} />,
+        name: "reportes",
+        path: "/reportes",
+        element: <ReporteVentas />,
       },
       {
         icon: <CubeIcon {...icon} />,
@@ -48,6 +101,18 @@ export const routes = [
         name: "clientes",
         path: "/clientes",
         element: <Clientes />,
+      },
+      {
+        icon: <UsersIcon {...icon} />,
+        name: "usuarios",
+        path: "/usuarios",
+        element: <GestionUsuarios />,
+      },
+      {
+        icon: <CogIcon {...icon} />,
+        name: "configuración",
+        path: "/configuracion",
+        element: <ConfiguracionSistema />,
       },
       {
         icon: <UserCircleIcon {...icon} />,
